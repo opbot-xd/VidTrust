@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import UploadVideoToS3WithNativeSdk from '@/components/VideoUpload';
 import VideosFetch from '@/components/VideosFetch';
@@ -10,6 +10,7 @@ import {
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import MenuIcon from '@mui/icons-material/Menu';
+import FactChecker from '@/components/FactChecker';
 
 const Home: React.FC = () => {
   const { loggedIn, user } = useAuth();
@@ -196,6 +197,15 @@ const Home: React.FC = () => {
                   </Typography>
                 </Box>
               </Box>
+            </Box>
+          </Fade>
+
+          {/* Fact Checker Section */}
+          <Fade in={true} timeout={1100}>
+            <Box sx={{ mb: 3 }}>
+              <Paper elevation={0} sx={{ p: { xs: 2, sm: 3 }, borderRadius: '12px', background: 'transparent', border: 'none' }}>
+                <FactChecker />
+              </Paper>
             </Box>
           </Fade>
 

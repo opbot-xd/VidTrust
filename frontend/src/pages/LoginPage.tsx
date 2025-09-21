@@ -91,9 +91,9 @@ const LoginPage: React.FC = () => {
               <InfoIcon fontSize="small" style={{ marginRight: '5px' }} />
               About
             </a>
-            <a href="#" className="navbar-link">
+            <a href="#" className="navbar-link" onClick={(e) => { e.preventDefault(); navigate('/fact-check'); }}>
               <PriceCheckIcon fontSize="small" style={{ marginRight: '5px' }} />
-              Pricing
+              Fact Checker
             </a>
             <a href="#" className="navbar-link">
               <ContactSupportIcon fontSize="small" style={{ marginRight: '5px' }} />
@@ -143,9 +143,9 @@ const LoginPage: React.FC = () => {
               <InfoIcon fontSize="small" style={{ marginRight: '10px' }} />
               About
             </a>
-            <a href="#" className="mobile-menu-link">
+            <a href="#" className="mobile-menu-link" onClick={(e) => { e.preventDefault(); navigate('/fact-check'); }}>
               <PriceCheckIcon fontSize="small" style={{ marginRight: '10px' }} />
-              Pricing
+              Fact Checker
             </a>
             <a href="#" className="mobile-menu-link">
               <ContactSupportIcon fontSize="small" style={{ marginRight: '10px' }} />

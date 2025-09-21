@@ -1,13 +1,14 @@
 import React from 'react';
-import { BrowserRouter, Navigate, Route, RouterProvider, Routes, createBrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import Callback from './pages/Callback';
 import LoginPage from './pages/LoginPage';
 import Home from './pages/Home';
 import VideoCheck from './pages/VideoCheck';
+import FactCheckPage from './pages/FactCheckPage';
 
 const App: React.FC = () => {
-  const { loggedIn } = useAuth();
+  useAuth();
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +19,7 @@ const App: React.FC = () => {
             <Route element={<Home />} path="/home" /> 
             <Route element={<Callback />} path='/auth/callback' />
             <Route element={<VideoCheck />} path='/video_check'/>
+            <Route element={<FactCheckPage />} path='/fact-check' />
             </Routes>
         </BrowserRouter>
 
