@@ -1,0 +1,13 @@
+venv
+.env
+private_key.pem
+public_key.pem
+signature.bin
+video.mp4
+backend/firestore_connection/b27project-31bde-firebase-adminsdk-ybhhu-2459f43c40.json
+b27project-31bde-firebase-adminsdk-ybhhu-2459f43c40.json
+b27project-e4206a0ff48a.json
+__pycache__
+local_video_sign.mkv
+local_video.mkv
+
