@@ -36,6 +36,10 @@ tzdata==2024.2
 urllib3==2.2.3
 xxhash==3.5.0
 yarl==1.14.0
+pinecone-client==2.2.4
+sentence-transformers==2.2.2
+gradio-client==0.8.1
+google-generativeai==0.3.2
 alembic==1.13.3
 blinker==1.8.2
 cffi==1.17.1

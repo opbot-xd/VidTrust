@@ -1,3 +1,4 @@
+from flask import request, jsonify
 from google_video_api.google_api_video import detect_potential_tampering
 from controllers.auth_controllers import get_auth_url, auth_token, check_logged_in as check_logged_in_controller, logged_out
 from controllers.video_controllers import mp4_converter, video_url as video_url_controller
@@ -5,8 +6,19 @@ from controllers.video_controllers import video_fetch_url as video_fetch_url_con
 from middleware.auth_middleware import auth_middleware
 from controllers.video_controllers import test_video
 from controllers.video_controllers import delete_video
+from controllers.fact_checker_controller import FactCheckerController
 
 def configure_routes(app):
+    fact_checker_controller = FactCheckerController()
+    
+    @app.route('/api/fact-check', methods=['POST'])
+    @auth_middleware
+    def fact_check():
+        text = request.json.get('text')
+        if not text:
+            return jsonify({"error": "No text provided"}), 400
+        return fact_checker_controller.analyze_text(text)
+
     @app.route('/auth/logged_in', methods=['GET'])
     def check_logged_in_route():
         return check_logged_in_controller()
