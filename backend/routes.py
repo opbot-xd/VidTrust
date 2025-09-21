@@ -12,7 +12,6 @@ def configure_routes(app):
     fact_checker_controller = FactCheckerController()
     
     @app.route('/api/fact-check', methods=['POST'])
-    @auth_middleware
     def fact_check():
         text = request.json.get('text')
         if not text:
