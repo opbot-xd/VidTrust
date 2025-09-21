@@ -11,10 +11,6 @@ Follow these steps to clone the repository, set up the environment, and run the 
 
 First, clone the repository from GitHub to your local machine:
 
-```bash
-git clone https://github.com/DeenankSharma/b27_project.git
-```
-
 ### 2. Navigate to the frontend directory
 
 ```bash
