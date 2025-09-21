@@ -66,7 +66,8 @@ const Home: React.FC = () => {
           flexGrow: 1, 
           p: { xs: 2, sm: 3 }, 
           ml: { xs: 0, md: sidebarOpen ? '250px' : '0' },
-          mt: { xs: isMobile ? '60px' : '0', md: 0 },
+          // add extra top margin so the right-hand content bar doesn't stick to top
+          mt: { xs: isMobile ? '80px' : (sidebarOpen ? '200px' : '300px'), md: sidebarOpen ? '200px' : '300px' },
           transition: 'all 0.3s ease',
           width: '100%',
           maxWidth: '100%',
@@ -200,15 +201,6 @@ const Home: React.FC = () => {
             </Box>
           </Fade>
 
-          {/* Fact Checker Section */}
-          <Fade in={true} timeout={1100}>
-            <Box sx={{ mb: 3 }}>
-              <Paper elevation={0} sx={{ p: { xs: 2, sm: 3 }, borderRadius: '12px', background: 'transparent', border: 'none' }}>
-                <FactChecker />
-              </Paper>
-            </Box>
-          </Fade>
-
           {/* Content Section */}
           <Fade in={true} timeout={1200}>
             <Paper elevation={0} sx={{ 
@@ -229,6 +221,14 @@ const Home: React.FC = () => {
             }}>
               {selectedItem === 0 ? <UploadVideoToS3WithNativeSdk /> : <VideosFetch />}
             </Paper>
+          </Fade>
+          {/* Fact Checker Section (moved below content) */}
+          <Fade in={true} timeout={1100}>
+            <Box sx={{ mt: 3 }}>
+              <Paper elevation={0} sx={{ p: { xs: 2, sm: 3 }, borderRadius: '12px', background: 'transparent', border: 'none' }}>
+                <FactChecker />
+              </Paper>
+            </Box>
           </Fade>
           
           {/* Footer */}

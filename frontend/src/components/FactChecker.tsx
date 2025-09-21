@@ -26,7 +26,7 @@ const FactChecker: React.FC = () => {
 
     setLoading(true);
     try {
-      const resp = await fetch('/api/fact-check', {
+      const resp = await fetch('/fact-check', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text })
