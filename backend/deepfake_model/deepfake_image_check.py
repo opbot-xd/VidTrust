@@ -1,8 +1,15 @@
 from transformers import AutoImageProcessor, ViTForImageClassification
 from PIL import Image
-import torch
+import logging
 
-
+# Import torch lazily and handle import failures (e.g., missing DLLs) gracefully
+try:
+    import torch
+    _TORCH_AVAILABLE = True
+except Exception as e:
+    torch = None  # type: ignore
+    _TORCH_AVAILABLE = False
+    logging.getLogger(__name__).warning("torch not available or failed to import: %s", e)
 
 
 def check_deepfake_image(img: Image.Image) -> bool:
@@ -11,6 +18,13 @@ def check_deepfake_image(img: Image.Image) -> bool:
     '''
     if not isinstance(img, Image.Image):
         raise TypeError("The input must be a PIL Image.")
+
+    # If torch isn't available, return False (safe fallback)
+    if not _TORCH_AVAILABLE:
+        logging.getLogger(__name__).warning(
+            "check_deepfake_image called but torch is unavailable. Returning False.")
+        return False
+
     processor = AutoImageProcessor.from_pretrained("dima806/deepfake_vs_real_image_detection")
     model = ViTForImageClassification.from_pretrained("dima806/deepfake_vs_real_image_detection")
     
@@ -32,5 +46,4 @@ def check_deepfake_image(img: Image.Image) -> bool:
     labels = model.config.id2label
     predicted_label = labels[predicted_class_idx]
 
-    if predicted_label=="Real":return True
-    return False
+    return predicted_label == "Real"
