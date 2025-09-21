@@ -8,7 +8,7 @@ class GeminiSummarizer:
         if not api_key:
             raise ValueError("GOOGLE_GEMINI_API_KEY environment variable not set")
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel('gemini-pro')
+        self.model = genai.GenerativeModel('gemini-1.5-flash')
 
     def generate_comprehensive_summary(self, all_claims_data: List[Dict[str, Any]]) -> Dict[str, Any]:
         """

@@ -11,6 +11,11 @@ from controllers.fact_checker_controller import FactCheckerController
 def configure_routes(app):
     fact_checker_controller = FactCheckerController()
     
+    @app.route('/', methods=['GET'])
+    def home():
+        """Simple health/home endpoint to verify backend is running."""
+        return jsonify({"status": "ok", "message": "Backend running"}), 200
+    
     @app.route('/api/fact-check', methods=['POST'])
     def fact_check():
         text = request.json.get('text')
